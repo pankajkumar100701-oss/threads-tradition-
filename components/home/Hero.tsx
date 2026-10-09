@@ -7,17 +7,17 @@ import { Photo } from "../ui/Photo";
 import { ArrowIcon } from "../ui/Icons";
 
 const SLIDES: { shot: Shot; alt: string; caption: string; href: string }[] = [
-  { shot: { ...local("pattu-women", 0.5, 0.5), slot: "home-hero" }, alt: "Women of a Kullu mahila mandal in black, red and ivory pattus with dhatu headscarves", caption: "Kullvi Pattu & Dhatu", href: "/outfits/kullvi-pattu-set" },
-  { shot: local("gaddi-chola-dance", 0.28), alt: "A Gaddi man dancing in an ivory chola tied with black dora and a plumed topi", caption: "Gaddi Chola & Dora", href: "/outfits/gaddi-chola-dora-set" },
-  { shot: local("kinnauri-attire", 0.3, 0.5), alt: "A woman in a Kinnauri shawl and green thepang against the mountains", caption: "Kinnauri Dohru & Thepang", href: "/outfits/kinnauri-dohru-set" },
-  { shot: local("gaddi-couple", 0.35), alt: "A Gaddi couple in ceremonial dress with silver jewellery", caption: "Valley Vows · Couple Look", href: "/collections/couple-looks" },
+  { shot: { ...local("pattu-drying", 0.5, 0.3), slot: "home-hero" }, alt: "Kullvi pattus in pink, blue and red hanging from the balcony of a traditional Kullu house", caption: "Kullvi Pattu & Dhatu", href: "/outfits/kullvi-pattu-set" },
+  { shot: local("pattu-loom-teal", 0.5), alt: "A teal pattu with a red and gold Kullu border on a handloom", caption: "Teal Pattu with Kullu Border", href: "/outfits/teal-pattu" },
+  { shot: local("kinnauri-bridal-cap", 0.5), alt: "A Kinnauri bridal thepang crowned with paper flowers", caption: "Kinnauri Thepang", href: "/outfits/kinnauri-thepang" },
+  { shot: local("chandrahaar-bridal", 0.4), alt: "A silver Kinnauri bridal chandrahaar on black velvet", caption: "Silver Heirlooms", href: "/collections/silver-heirlooms" },
 ];
 
 const STRIP = [
   { label: "Pahari Byah", href: "/collections/pahari-byah" },
   { label: "Kullu Valley", href: "/collections/kullu-valley" },
   { label: "Gaddi & Chamba", href: "/collections/gaddi-chamba" },
-  { label: "Kinnaur & Lahaul", href: "/collections/kinnaur-lahaul" },
+  { label: "Kinnaur", href: "/collections/kinnaur" },
   { label: "Nati Troupe", href: "/collections/nati-troupe" },
 ];
 
@@ -55,7 +55,7 @@ export function Hero() {
           Wear your <em className="font-normal text-gold-soft">roots.</em>
         </h1>
         <p className="animate-rise mt-7 max-w-md text-base leading-relaxed text-paper/80 sm:text-lg" style={{ animationDelay: "450ms" }}>
-          Pattu, chola, luanchari, topi and silver from Kullu, Chamba, Kinnaur and Lahaul. Rented for your byah, mela or stage, returned for the next.
+          Pattu, chola, luanchari, topi and silver from Kullu, Chamba and Kinnaur. Rented for your byah, mela or stage, returned for the next.
         </p>
         <div className="animate-rise mt-10 flex flex-wrap gap-3" style={{ animationDelay: "600ms" }}>
           <Link href="/collections" className="btn-light">

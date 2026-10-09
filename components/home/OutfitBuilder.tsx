@@ -38,7 +38,7 @@ const TYPES: Record<GarmentType, { colours: [string, string][]; accessories: str
     colours: [["Teal", "#2f7f79"], ["Red", "#c4283a"], ["Rani Pink", "#d4307a"], ["Green", "#2d6a45"], ["Royal Blue", "#2b4d8f"]],
     accessories: ["dora", "chak", "nath", "hansli", "silver-kangan", "kinnauri-earrings-acc"],
     sizes: ["XS", "S", "M", "L", "XL"],
-    categories: ["Luanchari", "Robe"],
+    categories: ["Luanchari"],
     gender: "her",
   },
 };

@@ -6,7 +6,7 @@ import { Photo } from "@/components/ui/Photo";
 import { Reveal } from "@/components/ui/Reveal";
 import { ArrowIcon } from "@/components/ui/Icons";
 
-export const metadata: Metadata = { title: "Collections", description: "Kullu Valley, Gaddi & Chamba, Kinnaur & Lahaul and Pahari Byah, plus special edits for couples, families, nati troupes and silver." };
+export const metadata: Metadata = { title: "Collections", description: "Kullu Valley, Gaddi & Chamba, Kinnaur and Pahari Byah, plus special edits for couples, families, nati troupes and silver." };
 
 export default function CollectionsPage() {
   const main = collections.filter((c) => !c.special);

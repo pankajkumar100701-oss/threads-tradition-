@@ -11,7 +11,7 @@ export default function JournalPage() {
   const [first, ...rest] = posts;
   return (
     <>
-      <PageHeader eyebrow="The Journal" title={<>Notes on <em>dressing well.</em></>} lead="Guides, culture and styling from our studio in the hills." image={{ ...local("kullu-woman", 0.3), slot: "journal-editorial" }} />
+      <PageHeader eyebrow="The Journal" title={<>Notes on <em>dressing well.</em></>} lead="Guides, culture and styling from our studio in the hills." image={{ ...local("pattu-loom-teal", 0.5), slot: "journal-editorial" }} />
       <section className="shell grid gap-x-6 gap-y-14 pb-28 lg:grid-cols-2">
         <Reveal className="lg:row-span-2">
           <PostCard post={first} big />

@@ -4,7 +4,10 @@ export type Status = "available" | "few-left" | "booked" | "coming-soon";
 export type Style = "Bridal" | "Festive" | "Heritage";
 export type Gender = "him" | "her" | "unisex";
 
-export type Category = "Pattu" | "Chola" | "Luanchari" | "Koti" | "Robe" | "Shawl" | "Topi" | "Bridal Set" | "Jewellery";
+export type Category = "Pattu" | "Chola" | "Luanchari" | "Koti" | "Shawl" | "Topi" | "Bridal Set" | "Jewellery";
+
+/** The silhouettes the outfit builder and product illustrations can draw. */
+export type GarmentType = "Chola" | "Koti" | "Pattu" | "Luanchari";
 
 export type Product = {
   slug: string;
@@ -17,8 +20,11 @@ export type Product = {
   price: number;
   /** what the outfit would cost to buy, for the rent-vs-buy comparison */
   retail: number;
-  shot: Shot;
-  /** extra real photographs; used for the Detail and Model gallery views */
+  /** a photograph of the piece itself (never a person wearing it) */
+  shot?: Shot;
+  /** garments without a photograph are drawn in their own colour instead */
+  figure?: { type: GarmentType; accessories: string[] };
+  /** extra real photographs; used for the Detail and Close-up views */
   gallery?: Shot[];
   occasions: OccasionSlug[];
   collections: CollectionSlug[];
@@ -40,7 +46,7 @@ export type Product = {
 
 export type OccasionSlug = "bride-groom" | "wedding-guest" | "festival" | "nati" | "cultural-event" | "photoshoot";
 
-export type CollectionSlug = "kullu-valley" | "gaddi-chamba" | "kinnaur-lahaul" | "pahari-byah" | "couple-looks" | "family-byah" | "nati-troupe" | "silver-heirlooms";
+export type CollectionSlug = "kullu-valley" | "gaddi-chamba" | "kinnaur" | "pahari-byah" | "couple-looks" | "family-byah" | "nati-troupe" | "silver-heirlooms";
 
 const HIM = ["S", "M", "L", "XL", "XXL"];
 const HER = ["XS", "S", "M", "L", "XL"];
@@ -60,8 +66,8 @@ export const products: Product[] = [
     hex: "#efe8da",
     price: 1199,
     retail: 14000,
-    shot: local("gaddi-chola-dance", 0.3),
-    gallery: [local("gaddi-couple", 0.4, 0.25), local("gaddi-man", 0.3)],
+    figure: { type: "Chola", accessories: ["gaddi-topi", "dora", "pula"] },
+    gallery: [local("loom-2", 0.5), local("pattu-weave-2", 0.5)],
     occasions: ["bride-groom", "nati", "festival", "cultural-event"],
     collections: ["gaddi-chamba", "couple-looks", "nati-troupe"],
     style: "Heritage",
@@ -85,8 +91,8 @@ export const products: Product[] = [
     hex: "#3a3935",
     price: 799,
     retail: 7500,
-    shot: local("nati-men", 0.35, 0.45),
-    gallery: [local("pattu-weave-2", 0.5), local("kullu-dussehra", 0.5)],
+    figure: { type: "Koti", accessories: ["kullu-topi-acc", "kullu-muffler"] },
+    gallery: [local("pattu-weave-2", 0.5), local("kullu-topi-stack", 0.5)],
     occasions: ["wedding-guest", "festival", "nati", "cultural-event"],
     collections: ["kullu-valley", "family-byah", "nati-troupe"],
     style: "Festive",
@@ -110,8 +116,8 @@ export const products: Product[] = [
     hex: "#ece0c6",
     price: 2199,
     retail: 28000,
-    shot: local("gaddi-couple", 0.35, 0.22),
-    gallery: [local("kullu-topi-stack", 0.5), local("pattu-weave-1", 0.5)],
+    figure: { type: "Chola", accessories: ["kullu-topi-acc", "sehra", "kullu-muffler", "pula"] },
+    gallery: [local("pattu-weave-1", 0.5), local("joth-pin", 0.5)],
     occasions: ["bride-groom"],
     collections: ["pahari-byah", "couple-looks"],
     style: "Bridal",
@@ -137,7 +143,7 @@ export const products: Product[] = [
     price: 199,
     retail: 1200,
     shot: local("kullu-topi-stack", 0.5),
-    gallery: [local("nati-men", 0.25, 0.3)],
+    gallery: [local("joth-pin", 0.5)],
     occasions: ["bride-groom", "wedding-guest", "festival", "nati", "cultural-event"],
     collections: ["kullu-valley", "family-byah", "nati-troupe"],
     style: "Festive",
@@ -160,17 +166,17 @@ export const products: Product[] = [
     hex: "#1f5e45",
     price: 249,
     retail: 1800,
-    shot: local("kinnauri-elder", 0.25),
-    gallery: [local("kinnauri-attire", 0.12)],
+    shot: local("kinnauri-bridal-cap", 0.5),
+    gallery: [local("kullu-topi-stack", 0.5)],
     occasions: ["bride-groom", "festival", "photoshoot", "cultural-event"],
-    collections: ["kinnaur-lahaul"],
+    collections: ["kinnaur"],
     style: "Heritage",
     region: "Kinnaur",
     status: "available",
     sizes: ["56", "57", "58", "59"],
     fit: "Tall crown, folded green flap",
     material: "Grey wool with green velvet band",
-    note: "The tall Kinnauri cap with its folded green velvet band, worn by men and women alike. Flowers or a feather tucked into the band are welcome.",
+    note: "The Kinnauri cap with its folded green velvet band, worn by men and women alike. For a wedding it comes dressed as the bridal kir-kir thepang, crowned with flowers.",
     rating: 4.9,
     reviewCount: 39,
     pairs: ["kinnauri-earrings-acc"],
@@ -210,8 +216,8 @@ export const products: Product[] = [
     hex: "#3b1b1d",
     price: 999,
     retail: 14000,
-    shot: local("pattu-women", 0.5, 0.5),
-    gallery: [local("pattu-weave-1", 0.5), local("loom-2", 0.5)],
+    shot: local("pattu-drying", 0.5, 0.3),
+    gallery: [local("pattu-weave-1", 0.5), local("digra-brooch", 0.5)],
     occasions: ["wedding-guest", "festival", "nati", "cultural-event", "photoshoot"],
     collections: ["kullu-valley", "couple-looks", "family-byah", "nati-troupe"],
     style: "Festive",
@@ -227,16 +233,16 @@ export const products: Product[] = [
     pairs: PATTU,
   },
   {
-    slug: "ivory-pattu",
-    name: "Ivory Pattu with Kullu Border",
+    slug: "teal-pattu",
+    name: "Teal Pattu with Kullu Border",
     category: "Pattu",
     gender: "her",
-    colour: "Ivory",
-    hex: "#ece6da",
+    colour: "Teal",
+    hex: "#1f6f7a",
     price: 899,
     retail: 12000,
-    shot: local("himachali-attire", 0.4),
-    gallery: [local("loom-1", 0.5), local("pattu-weave-1", 0.5)],
+    shot: local("pattu-loom-teal", 0.5),
+    gallery: [local("loom-1", 0.5), local("digra-brooch", 0.5)],
     occasions: ["wedding-guest", "festival", "photoshoot"],
     collections: ["kullu-valley", "family-byah"],
     style: "Heritage",
@@ -244,8 +250,8 @@ export const products: Product[] = [
     status: "available",
     sizes: FREE,
     fit: "Wrapped over a kurta, belted",
-    material: "Handloom wool with red woven border",
-    note: "Undyed ivory wool with a red Kullu border at the hem and front edge. Quietly elegant for a daytime byah, and warm enough to skip the coat.",
+    material: "Handloom wool with red and gold woven border",
+    note: "Deep teal wool with a red selvedge and a Kullu border of diamonds and steps, photographed here on the loom it was woven on. Warm enough to skip the coat.",
     rating: 4.8,
     reviewCount: 31,
     pairs: PATTU,
@@ -259,8 +265,8 @@ export const products: Product[] = [
     hex: "#b0202e",
     price: 2499,
     retail: 32000,
-    shot: local("kullu-woman", 0.3),
-    gallery: [local("pattu-women", 0.5, 0.3), local("chandrahaar", 0.45)],
+    figure: { type: "Pattu", accessories: ["dhatu", "silver-brooch", "chandrahaar-acc", "nath"] },
+    gallery: [local("chandrahaar-bridal", 0.5), local("pattu-weave-1", 0.5)],
     occasions: ["bride-groom"],
     collections: ["pahari-byah", "couple-looks", "silver-heirlooms"],
     style: "Bridal",
@@ -284,10 +290,10 @@ export const products: Product[] = [
     hex: "#9f1d2a",
     price: 1999,
     retail: 26000,
-    shot: local("kinnauri-attire", 0.35),
-    gallery: [local("kinnauri-elder", 0.3), local("kinnauri-earrings", 0.5)],
+    figure: { type: "Pattu", accessories: ["kinnauri-earrings-acc", "chandrahaar-acc", "hansli"] },
+    gallery: [local("kinnauri-bridal-cap", 0.5), local("kinnauri-earrings", 0.5)],
     occasions: ["bride-groom", "festival", "photoshoot"],
-    collections: ["kinnaur-lahaul", "pahari-byah", "silver-heirlooms"],
+    collections: ["kinnaur", "pahari-byah", "silver-heirlooms"],
     style: "Bridal",
     region: "Kinnaur",
     status: "available",
@@ -309,8 +315,8 @@ export const products: Product[] = [
     hex: "#2f7f79",
     price: 1199,
     retail: 15000,
-    shot: local("gaddi-woman", 0.35, 0.45),
-    gallery: [local("gaddi-women-dance", 0.4), local("gaddi-couple", 0.45, 0.75)],
+    figure: { type: "Luanchari", accessories: ["dora", "nath", "chak", "hansli"] },
+    gallery: [local("hansuli", 0.55), local("dogra-nath", 0.5)],
     occasions: ["bride-groom", "nati", "festival", "cultural-event"],
     collections: ["gaddi-chamba", "couple-looks", "nati-troupe"],
     style: "Heritage",
@@ -334,8 +340,8 @@ export const products: Product[] = [
     hex: "#c4283a",
     price: 999,
     retail: 11000,
-    shot: local("gaddi-women-dance", 0.45, 0.35),
-    gallery: [local("gaddi-woman", 0.6, 0.45)],
+    figure: { type: "Luanchari", accessories: ["dora", "chak"] },
+    gallery: [local("maang-teeka", 0.5), local("pattu-weave-2", 0.5)],
     occasions: ["nati", "cultural-event", "festival"],
     collections: ["gaddi-chamba", "nati-troupe"],
     style: "Festive",
@@ -349,55 +355,6 @@ export const products: Product[] = [
     reviewCount: 58,
     pairs: ["dora", "chak", "nath"],
   },
-  {
-    slug: "velvet-jacket-set",
-    name: "Himachali Velvet Jacket Set",
-    category: "Koti",
-    gender: "her",
-    colour: "Green",
-    hex: "#1e6b4a",
-    price: 1099,
-    retail: 13000,
-    shot: local("himachali-jacket", 0.3),
-    gallery: [local("kinnauri-silver", 0.5)],
-    occasions: ["festival", "cultural-event", "nati", "photoshoot"],
-    collections: ["kinnaur-lahaul", "nati-troupe"],
-    style: "Festive",
-    region: "Kinnaur & Shimla hills",
-    status: "available",
-    sizes: HER,
-    fit: "Fitted velvet jacket over a pattu skirt",
-    material: "Silk velvet jacket, handloom wool skirt",
-    note: "An emerald velvet jacket with silver buttons over a grey wool pattu, finished with a thepang. The stage favourite for Himachal Day and college fests.",
-    isNew: true,
-    rating: 4.8,
-    reviewCount: 22,
-    pairs: ["chandrahaar-acc", "kinnauri-earrings-acc", "hansli"],
-  },
-  {
-    slug: "lahauli-robe",
-    name: "Lahauli Velvet Robe",
-    category: "Robe",
-    gender: "her",
-    colour: "Purple",
-    hex: "#5b3473",
-    price: 899,
-    retail: 10000,
-    shot: local("lahauli-girls", 0.45),
-    gallery: [local("kaza-dance", 0.6)],
-    occasions: ["cultural-event", "festival", "photoshoot"],
-    collections: ["kinnaur-lahaul"],
-    style: "Heritage",
-    region: "Lahaul & Spiti",
-    status: "available",
-    sizes: ["Kids", "XS", "S", "M", "L"],
-    fit: "Ankle-length wrap robe with sash",
-    material: "Brocade velvet, cotton lining",
-    note: "The long wrap robe of Lahaul and Spiti, in brocaded velvet with a contrast sash. Also in children's sizes, so it's a favourite for school annual days.",
-    rating: 4.7,
-    reviewCount: 17,
-    pairs: ["hansli", "kinnauri-earrings-acc"],
-  },
   // ------------------------------------------------------------ jewellery
   {
     slug: "chandrahaar-set",
@@ -408,8 +365,8 @@ export const products: Product[] = [
     hex: "#c9c9cf",
     price: 799,
     retail: 25000,
-    shot: local("chandrahaar", 0.45),
-    gallery: [local("kinnauri-silver", 0.5)],
+    shot: local("chandrahaar-bridal", 0.45),
+    gallery: [local("chandrahaar", 0.45), local("kinnauri-silver", 0.5)],
     occasions: ["bride-groom", "festival", "photoshoot"],
     collections: ["silver-heirlooms", "pahari-byah"],
     style: "Bridal",
@@ -434,7 +391,7 @@ export const products: Product[] = [
     retail: 22000,
     shot: local("gur-shanglang", 0.5),
     occasions: ["bride-groom", "festival", "photoshoot"],
-    collections: ["silver-heirlooms", "kinnaur-lahaul"],
+    collections: ["silver-heirlooms", "kinnaur"],
     style: "Bridal",
     region: "Kinnaur",
     status: "few-left",
@@ -448,6 +405,54 @@ export const products: Product[] = [
     pairs: ["chandrahaar-acc", "kinnauri-earrings-acc"],
   },
   {
+    slug: "kinnauri-matha-patti",
+    name: "Kinnauri Matha Patti",
+    category: "Jewellery",
+    gender: "her",
+    colour: "Silver",
+    hex: "#c4c5cb",
+    price: 599,
+    retail: 18000,
+    shot: local("matha-patti", 0.5),
+    gallery: [local("kinnauri-silver", 0.5)],
+    occasions: ["bride-groom", "photoshoot"],
+    collections: ["silver-heirlooms", "kinnaur", "pahari-byah"],
+    style: "Bridal",
+    region: "Kinnaur",
+    status: "available",
+    sizes: FREE,
+    fit: "Adjustable chain, pins into the hair",
+    material: "Silver with coloured stones",
+    note: "The Kinnauri bride's head jewellery: silver plates set with stones and edged with tiny bells, worn across the forehead under the thepang.",
+    isNew: true,
+    rating: 4.9,
+    reviewCount: 11,
+    pairs: ["kinnauri-earrings-acc", "chandrahaar-acc"],
+  },
+  {
+    slug: "moti-jantar-mala",
+    name: "Moti Jantar Mala",
+    category: "Jewellery",
+    gender: "her",
+    colour: "Coral",
+    hex: "#c7372f",
+    price: 399,
+    retail: 9000,
+    shot: local("jantar-mala", 0.5),
+    occasions: ["bride-groom", "festival", "wedding-guest"],
+    collections: ["silver-heirlooms", "kinnaur"],
+    style: "Heritage",
+    region: "Kinnaur",
+    status: "available",
+    sizes: FREE,
+    fit: "Long, 28 inches",
+    material: "Coral and pearl beads, silver jantar amulet",
+    note: "Strands of coral and pearl beads with a square silver jantar amulet. Light enough for a long mela day, bright enough to lift a plain pattu.",
+    rating: 4.7,
+    reviewCount: 16,
+    pairs: ["kinnauri-earrings-acc"],
+  },
+  {
     slug: "kinnauri-gold-set",
     name: "Kinnauri Gold Jewellery Set",
     category: "Jewellery",
@@ -459,7 +464,7 @@ export const products: Product[] = [
     shot: local("kinnauri-gold", 0.5),
     gallery: [local("kinnauri-earrings", 0.5)],
     occasions: ["bride-groom", "festival"],
-    collections: ["silver-heirlooms", "kinnaur-lahaul"],
+    collections: ["silver-heirlooms", "kinnaur"],
     style: "Bridal",
     region: "Kinnaur",
     status: "coming-soon",
@@ -521,12 +526,12 @@ export const accessories: Accessory[] = [
 export type Occasion = { slug: OccasionSlug; name: string; line: string; image: Shot };
 
 export const occasions: Occasion[] = [
-  { slug: "bride-groom", name: "Pahari Byah", line: "The bride, the groom and the sehra", image: { ...local("gaddi-couple", 0.35), slot: "occasion-wedding" } },
-  { slug: "wedding-guest", name: "Wedding Guest", line: "Topi, pattu and a warm shawl", image: local("pattu-women", 0.5) },
-  { slug: "festival", name: "Dussehra & Melas", line: "Kullu Dussehra, Minjar, Lavi, Shivratri", image: { ...local("devta-procession", 0.5), slot: "occasion-festival" } },
-  { slug: "nati", name: "Nati & Folk Dance", line: "Matching sets that twirl", image: { ...local("gaddi-women-dance", 0.45), slot: "occasion-party" } },
-  { slug: "cultural-event", name: "School & College Functions", line: "Himachal Day, annual days and fests", image: local("lahauli-girls", 0.45) },
-  { slug: "photoshoot", name: "Heritage Photoshoot", line: "Pattu against the peaks", image: { ...local("kinnauri-attire", 0.3), slot: "occasion-photoshoot" } },
+  { slug: "bride-groom", name: "Pahari Byah", line: "The bride, the groom and the sehra", image: { ...local("kinnauri-bridal-cap", 0.5), slot: "occasion-wedding" } },
+  { slug: "wedding-guest", name: "Wedding Guest", line: "Topi, pattu and a warm shawl", image: local("kullu-topi-stack", 0.5) },
+  { slug: "festival", name: "Dussehra & Melas", line: "Kullu Dussehra, Minjar, Lavi, Shivratri", image: { ...local("pattu-drying", 0.5, 0.3), slot: "occasion-festival" } },
+  { slug: "nati", name: "Nati & Folk Dance", line: "Matching sets that twirl", image: { ...local("pattu-weave-1", 0.5), slot: "occasion-party" } },
+  { slug: "cultural-event", name: "School & College Functions", line: "Himachal Day, annual days and fests", image: local("pattu-weave-2", 0.5) },
+  { slug: "photoshoot", name: "Heritage Photoshoot", line: "Pattu against the peaks", image: { ...local("pattu-loom-teal", 0.5), slot: "occasion-photoshoot" } },
 ];
 
 export type Collection = {
@@ -546,7 +551,7 @@ export const collections: Collection[] = [
     kicker: "Kullu · Mandi",
     line: "Pattu, koti, topi and handloom shawls",
     story: "The dress of the Kullu valley: handloom pattus pinned with silver, tweed kotis, patterned topis and shawls woven on pit looms in the villages above the Beas.",
-    image: { ...local("pattu-women", 0.5), slot: "collection-kullu" },
+    image: { ...local("pattu-drying", 0.5, 0.3), slot: "collection-kullu" },
   },
   {
     slug: "gaddi-chamba",
@@ -554,15 +559,15 @@ export const collections: Collection[] = [
     kicker: "Bharmour · Chamba",
     line: "Chola, dora and luanchari",
     story: "The shepherd community of the Dhauladhars dresses for celebration in undyed wool cholas bound with black dora, and luancharis whose skirts flare when they dance.",
-    image: { ...local("gaddi-chola-dance", 0.3), slot: "collection-gaddi" },
+    image: { ...local("chamba-rumal-figures", 0.5), slot: "collection-gaddi" },
   },
   {
-    slug: "kinnaur-lahaul",
-    title: "Kinnaur & Lahaul",
+    slug: "kinnaur",
+    title: "Kinnaur",
     kicker: "The high valleys",
-    line: "Dohru, thepang, velvet and silver",
-    story: "From the apple orchards of Kinnaur to the cold desert of Spiti: layered dohrus, the green-banded thepang, brocaded velvet robes and the region's famous silver.",
-    image: { ...local("kinnauri-attire", 0.3), slot: "collection-kinnaur" },
+    line: "Dohru, thepang and silver",
+    story: "From the apple orchards of Kinnaur: layered dohrus, the green-banded bridal thepang, matha pattis and the region's famous silver.",
+    image: { ...local("kinnauri-bridal-cap", 0.5), slot: "collection-kinnaur" },
   },
   {
     slug: "pahari-byah",
@@ -570,7 +575,7 @@ export const collections: Collection[] = [
     kicker: "Wedding",
     line: "Dulha and dulhan sets, styled head to toe",
     story: "Everything for a Himachali wedding: the groom's long coat and sehra, the bride's pattu, dhatu and chandrahaar, and coordinated looks for the family.",
-    image: { ...local("kullu-woman", 0.3), slot: "collection-byah" },
+    image: { ...local("chandrahaar-bridal", 0.4), slot: "collection-byah" },
   },
   {
     slug: "couple-looks",
@@ -578,7 +583,7 @@ export const collections: Collection[] = [
     kicker: "His + Hers",
     line: "Coordinated pairs for two",
     story: "Gaddi with Gaddi, Kullvi with Kullvi: pairs styled together so they look right side by side in every photograph.",
-    image: local("gaddi-couple", 0.4),
+    image: local("pattu-loom-teal", 0.5),
     special: true,
   },
   {
@@ -587,7 +592,7 @@ export const collections: Collection[] = [
     kicker: "Parents · Siblings · Guests",
     line: "Topis and pattus for the whole family",
     story: "One palette for the whole family. Book up to twelve outfits together, topis for every guest included, delivered in one trip.",
-    image: local("nati-men", 0.35),
+    image: local("kullu-topi-stack", 0.5),
     special: true,
   },
   {
@@ -596,7 +601,7 @@ export const collections: Collection[] = [
     kicker: "Groups of 8 to 20",
     line: "Matching sets for the stage",
     story: "School annual days, college fests, Himachal Day and mela stages: matching chola, luanchari, koti and pattu sets in every size, delivered and collected as one booking.",
-    image: local("gaddi-women-dance", 0.45),
+    image: local("pattu-weave-1", 0.5),
     special: true,
   },
   {
@@ -623,7 +628,7 @@ export const featuredLook: Look = {
   name: "The Kullvi Pattu Look",
   main: "kullvi-pattu-set",
   accessories: ["silver-brooch", "chandrahaar-acc", "kullu-topi-acc", "pula"],
-  image: local("pattu-women", 0.5, 0.42),
+  image: local("pattu-drying", 0.5, 0.3),
 };
 
 export type CoupleLook = { name: string; his: string; hers: string; line: string };
@@ -671,7 +676,7 @@ export const posts: Post[] = [
     dek: "Wool, silver and colour. A guest's guide to dressing for a byah in the hills.",
     category: "Guides",
     minutes: 6,
-    image: { ...local("pattu-women", 0.5), slot: "journal-editorial" },
+    image: { ...local("chandrahaar-bridal", 0.4), slot: "journal-editorial" },
     body: [
       "Himachali weddings run on mountain time: long, cold and very warm-hearted. Plan for altitude first and fashion second. Even in October the evening baraat can drop close to freezing, so the best outfits are the ones that layer.",
       "For men, the easiest choice is a Kullu topi with a koti over a kurta and churidar. The topi is a mark of respect as much as an accessory, and hosts notice it. For family members, the long woollen chola with a black dora at the waist is the ceremonial choice.",
@@ -686,7 +691,7 @@ export const posts: Post[] = [
     dek: "Two pins, one gachchi and five minutes. A step-by-step for first-timers.",
     category: "Styling",
     minutes: 5,
-    image: local("himachali-attire", 0.4),
+    image: local("pattu-drying", 0.5, 0.3),
     body: [
       "A pattu is a single rectangle of handloom wool, usually about two and a half metres long. Everything about the look comes from how it is wrapped and pinned.",
       "Start over a full-sleeved kurta or blouse. Hold the pattu lengthwise behind you, bring both ends forward under the arms, and cross the left side over the right so the woven border runs down the front edge.",
@@ -701,7 +706,7 @@ export const posts: Post[] = [
     dek: "A week of devtas, music and the Dhalpur maidan. What the valley wears, and what to borrow.",
     category: "Culture",
     minutes: 6,
-    image: { ...local("devta-procession", 0.5), slot: "journal-culture" },
+    image: { ...local("kullu-topi-stack", 0.5), slot: "journal-culture" },
     body: [
       "Kullu Dussehra begins when Dussehra ends elsewhere. For a week, hundreds of village devtas are carried down to the Dhalpur maidan in palanquins, accompanied by drums, horns and their villages in their best clothes.",
       "Men wear the Kullu topi above all else, usually with a koti or a woollen coat over a kurta. On the procession days you will see topis in every colour, but green and maroon flaps are the most common.",
@@ -715,7 +720,7 @@ export const posts: Post[] = [
     dek: "Planning a troupe of twelve? A checklist for sizing, matching and getting everything back on time.",
     category: "Guides",
     minutes: 5,
-    image: local("gaddi-women-dance", 0.45),
+    image: local("pattu-weave-2", 0.5),
     body: [
       "The nati is the dance of Himachal, and every annual day, Himachal Day and college fest seems to have one. Getting a whole troupe dressed is mostly a logistics problem.",
       "Pick one look per row. Luancharis or pattus for the women, kotis or cholas for the men, and the same topi for everyone. Matching topis do more for a troupe than anything else on stage.",

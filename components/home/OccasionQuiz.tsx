@@ -69,7 +69,7 @@ export function OccasionQuiz() {
             </h2>
             <p className="mt-5 max-w-sm leading-relaxed text-muted">Three questions, thirty seconds. We&apos;ll pull the looks that fit.</p>
             <div className="relative mt-8 hidden aspect-[4/3] overflow-hidden lg:block">
-              <Photo shot={{ ...local("gaddi-couple", 0.4), slot: "style-quiz" }} ar="4:3" alt="A Gaddi couple in ceremonial Himachali dress" sizes="30vw" />
+              <Photo shot={{ ...local("pattu-loom-teal", 0.5), slot: "style-quiz" }} ar="4:3" alt="A teal Kullu pattu on the loom" sizes="30vw" />
             </div>
             <div className="mt-8 flex gap-2" aria-hidden="true">
               {[0, 1, 2, 3].map((i) => (

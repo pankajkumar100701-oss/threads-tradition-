@@ -1,6 +1,6 @@
 # Threads & Tradition
 
-*Wear the moment. Return the memory.* A rental storefront for **Himachali traditional wear only** (Kullvi pattu and dhatu, Gaddi chola and luanchari, Kinnauri dohru and thepang, Kullu topis and shawls, Lahauli robes and Pahari silver), built with Next.js 16, React 19 and Tailwind CSS 4.
+*Wear the moment. Return the memory.* A rental storefront for **Himachali traditional wear only** (Kullvi pattu and dhatu, Gaddi chola and luanchari, Kinnauri dohru and thepang, Kullu topis and shawls, and Pahari silver), built with Next.js 16, React 19 and Tailwind CSS 4.
 
 ```bash
 npm run dev   # http://localhost:3000

@@ -1,7 +1,7 @@
-export type GarmentType = "Chola" | "Koti" | "Pattu" | "Luanchari";
+import type { GarmentType } from "@/lib/data";
 
-const SKIN = "#c99a7b";
-const HAIR = "#2a1d17";
+export type { GarmentType };
+
 const SILVER = "#d7d8dd";
 const WOOL = "#f2ede4";
 /** The bands of a Kullu border: red, yellow, green, blue. */
@@ -39,6 +39,8 @@ export function LookFigure({ type, colour, accessories }: { type: GarmentType; c
   const has = (a: string) => accessories.includes(a);
   const dark = shade(colour, -0.12);
   const light = shade(colour, 0.18);
+  // Ids are derived from the look, so identical figures share identical defs and different ones never collide.
+  const id = `lf-${type}-${colour.slice(1)}`;
 
   const P = {
     chola: "M70 88 L130 88 L140 108 L168 330 Q100 344 32 330 L60 108 Z",
@@ -52,27 +54,24 @@ export function LookFigure({ type, colour, accessories }: { type: GarmentType; c
   return (
     <svg viewBox="0 -8 200 408" className="h-full w-full" role="img" aria-label={`Preview: ${type} with ${accessories.length} accessories`}>
       <defs>
-        <linearGradient id="lf-shade" x1="0" x2="1">
+        <linearGradient id={`${id}-shade`} x1="0" x2="1">
           <stop offset="0" stopColor="#000" stopOpacity=".22" />
           <stop offset=".5" stopColor="#000" stopOpacity="0" />
           <stop offset="1" stopColor="#000" stopOpacity=".26" />
         </linearGradient>
-        <radialGradient id="lf-floor" cx=".5" cy=".5" r=".5">
+        <radialGradient id={`${id}-floor`} cx=".5" cy=".5" r=".5">
           <stop offset="0" stopColor="#000" stopOpacity=".18" />
           <stop offset="1" stopColor="#000" stopOpacity="0" />
         </radialGradient>
-        <clipPath id="lf-pattu">
+        <clipPath id={`${id}-pattu`}>
           <path d={P.pattu} />
         </clipPath>
-        <clipPath id="lf-skirt">
+        <clipPath id={`${id}-skirt`}>
           <path d={P.skirt} />
         </clipPath>
       </defs>
 
-      <ellipse cx="100" cy="380" rx="80" ry="10" fill="url(#lf-floor)" />
-
-      {/* hair behind */}
-      {her && <path d="M77 52 Q100 14 123 52 L125 100 Q100 106 75 100 Z" fill={HAIR} />}
+      <ellipse cx="100" cy="380" rx="80" ry="10" fill={`url(#${id}-floor)`} />
 
       {/* arms: full sleeves for every look, in the garment colour or the kurta underneath */}
       {(() => {
@@ -84,14 +83,9 @@ export function LookFigure({ type, colour, accessories }: { type: GarmentType; c
           </>
         );
       })()}
-      <circle cx="51" cy="218" r="6.5" fill={SKIN} />
-      <circle cx="149" cy="218" r="6.5" fill={SKIN} />
-
-      {/* neck + head */}
-      <rect x="93" y="68" width="14" height="22" fill={SKIN} />
-      <circle cx="100" cy="50" r="20" fill={SKIN} />
-      {!her && <path d="M80 48 Q82 26 100 26 Q120 26 120 48 Q112 36 100 36 Q88 36 80 48 Z" fill={HAIR} />}
-      {her && <path d="M80 50 Q84 28 100 28 Q118 28 120 50 Q110 36 100 38 Q88 38 80 50 Z" fill={HAIR} />}
+      {/* cuffs: the garment is shown on its own, ghost-mannequin style, with no body inside */}
+      <path d="M44 208 L58 210" stroke={shade(colour, -0.3)} strokeWidth="3" />
+      <path d="M142 210 L156 208" stroke={shade(colour, -0.3)} strokeWidth="3" />
 
       {/* churidar for the men's looks */}
       {!her && (
@@ -108,7 +102,7 @@ export function LookFigure({ type, colour, accessories }: { type: GarmentType; c
       {type === "Chola" && (
         <>
           <path d={P.chola} fill={colour} />
-          <path d={P.chola} fill="url(#lf-shade)" />
+          <path d={P.chola} fill={`url(#${id}-shade)`} />
           {[60, 80, 100, 120, 140].map((x) => (
             <path key={x} d={`M100 170 L${x} 334`} stroke={dark} strokeWidth=".8" opacity=".5" />
           ))}
@@ -120,9 +114,9 @@ export function LookFigure({ type, colour, accessories }: { type: GarmentType; c
       {type === "Koti" && (
         <>
           <path d={P.kurta} fill={WOOL} />
-          <path d={P.kurta} fill="url(#lf-shade)" opacity=".5" />
+          <path d={P.kurta} fill={`url(#${id}-shade)`} opacity=".5" />
           <path d={P.koti} fill={colour} />
-          <path d={P.koti} fill="url(#lf-shade)" />
+          <path d={P.koti} fill={`url(#${id}-shade)`} />
           <path d="M92 90 L100 120 L108 90" fill={WOOL} />
           <path d="M100 120 V214" stroke={dark} strokeWidth="1.2" />
           {[134, 154, 174, 194].map((y) => (
@@ -135,8 +129,8 @@ export function LookFigure({ type, colour, accessories }: { type: GarmentType; c
       {type === "Pattu" && (
         <>
           <path d={P.pattu} fill={colour} />
-          <path d={P.pattu} fill="url(#lf-shade)" />
-          <g clipPath="url(#lf-pattu)">
+          <path d={P.pattu} fill={`url(#${id}-shade)`} />
+          <g clipPath={`url(#${id}-pattu)`}>
             <KulluBand x1={50} x2={150} y={346} h={16} />
             {/* the woven border runs down the crossed front edge */}
             <g transform="rotate(90 124 230)">
@@ -153,56 +147,48 @@ export function LookFigure({ type, colour, accessories }: { type: GarmentType; c
       {type === "Luanchari" && (
         <>
           <path d={P.skirt} fill={colour} />
-          <path d={P.skirt} fill="url(#lf-shade)" />
-          <g clipPath="url(#lf-skirt)">
+          <path d={P.skirt} fill={`url(#${id}-shade)`} />
+          <g clipPath={`url(#${id}-skirt)`}>
             {[40, 56, 72, 88, 104, 120, 136, 152].map((x, i) => (
               <path key={x} d={`M100 168 L${x - 16} 380 L${x} 380 Z`} fill={i % 2 ? light : dark} opacity=".35" />
             ))}
             <KulluBand x1={20} x2={180} y={352} h={12} />
           </g>
           <path d={P.bodice} fill={colour} />
-          <path d={P.bodice} fill="url(#lf-shade)" />
+          <path d={P.bodice} fill={`url(#${id}-shade)`} />
           <path d="M88 92 Q100 108 112 92" fill="none" stroke={dark} strokeWidth="1.5" />
           {/* dupatta over the shoulder */}
           <path d="M126 92 L142 100 L150 300 L134 296 L96 170 Z" fill={light} opacity=".55" />
         </>
       )}
 
-      {/* footwear */}
-      {has("pula") ? (
+      {/* inside of the back neck */}
+      <path d="M84 90 Q100 82 116 90 Q100 100 84 90 Z" fill={shade(colour, -0.35)} />
+
+      {/* pula slippers, set at the hem */}
+      {has("pula") && (
         <>
           <path d="M80 368 H98 L96 377 H78 Q74 372 80 368 Z" fill="#c8a96b" />
           <path d="M102 368 H120 Q126 372 122 377 H104 Z" fill="#c8a96b" />
           <path d="M80 372 H96 M104 372 H120" stroke="#9c7f45" strokeWidth="1" strokeDasharray="2 1.5" />
         </>
-      ) : (
-        <>
-          <ellipse cx="88" cy="373" rx="11" ry="5" fill="#3a2a20" />
-          <ellipse cx="112" cy="373" rx="11" ry="5" fill="#3a2a20" />
-        </>
       )}
 
       {/* accessories */}
+      {/* head pieces sit just above the collar, as on a display stand */}
       {has("dhatu") && (
-        <g>
+        <g transform="translate(0 24)">
           <path d="M78 46 Q78 22 100 22 Q122 22 122 46 Q100 36 78 46 Z" fill="#c4283a" />
           <path d="M82 38 Q100 28 118 38" stroke="#e3a227" strokeWidth="2" fill="none" strokeDasharray="3 2" />
           <path d="M120 44 L130 62 L122 64 Z" fill="#c4283a" />
         </g>
       )}
       {(has("kullu-topi-acc") || has("gaddi-topi")) && !has("dhatu") && (
-        <g>
-          <path d="M80 34 Q80 16 100 16 Q120 16 120 34 Z" fill={has("gaddi-topi") ? "#efe8da" : "#3a3935"} />
+        <g transform="translate(0 24)">
+          <path d="M80 34 Q80 16 100 16 Q120 16 120 34 Z" fill={has("gaddi-topi") ? "#efe8da" : "#3a3935"} stroke="#b9ae9a" strokeWidth=".8" />
           <rect x="79" y="28" width="42" height="8" fill={has("gaddi-topi") ? "#c4283a" : "#2d6a45"} />
           <path d="M82 32 h36" stroke="#e3a227" strokeWidth="1.5" strokeDasharray="3 2" />
           {has("gaddi-topi") && <path d="M114 20 Q124 0 118 -4 Q112 8 112 20 Z" fill="#f4f1ea" stroke="#c9c2b3" strokeWidth=".8" />}
-        </g>
-      )}
-      {has("sehra") && (
-        <g>
-          {[84, 90, 96, 102, 108, 114].map((x) => (
-            <path key={x} d={`M${x} 40 V${x % 12 ? 70 : 76}`} stroke="#e3c46a" strokeWidth="1.5" strokeDasharray="0.1 3" strokeLinecap="round" />
-          ))}
         </g>
       )}
       {has("dora") && (
@@ -236,14 +222,6 @@ export function LookFigure({ type, colour, accessories }: { type: GarmentType; c
           <rect x="94" y="140" width="12" height="10" fill={SILVER} stroke="#c9a253" />
         </g>
       )}
-      {has("kinnauri-earrings-acc") && (
-        <>
-          <path d="M80 56 v14 M120 56 v14" stroke="#c9a253" strokeWidth="1.5" />
-          <path d="M76 70 h8 l-4 8 Z M116 70 h8 l-4 8 Z" fill="#c9a253" />
-        </>
-      )}
-      {has("chak") && <circle cx="100" cy="30" r="6" fill={SILVER} stroke="#c9a253" strokeWidth="1.5" />}
-      {has("nath") && <circle cx="94" cy="56" r="5" fill="none" stroke="#c9a253" strokeWidth="1.5" />}
       {has("silver-kangan") && <path d="M44 202 h12 M44 206 h12 M144 202 h12 M144 206 h12" stroke={SILVER} strokeWidth="3" />}
       {has("chamba-rumal") && (
         <g>

@@ -106,8 +106,8 @@ function reservedOffsets(p: Product): number[] {
   const out: number[] = [];
   if (p.status === "booked") for (let i = 0; i <= 21; i++) out.push(i);
   if (p.status === "coming-soon") for (let i = 0; i <= 25; i++) out.push(i);
-  // Demo case: the velvet jacket is booked from the third day of the default window.
-  if (p.slug === "velvet-jacket-set") out.push(8, 9, 10);
+  // Demo case: the red luanchari is booked from the third day of the default window.
+  if (p.slug === "red-luanchari-set") out.push(8, 9, 10);
   const h = hash(p.slug);
   for (let k = 0; k < 4; k++) {
     const start = 12 + ((h >>> (k * 7)) % 70);

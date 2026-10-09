@@ -311,9 +311,9 @@ export function Catalogue({ fixed }: { fixed?: { collection?: string } }) {
 }
 
 const DEPARTMENTS = [
-  { key: "men", label: "Men", line: "Chola, koti, dulha sets", shot: { ...local("gaddi-chola-dance", 0.3), slot: "outfits-men" as const } },
-  { key: "women", label: "Women", line: "Pattu, luanchari, dohru", shot: { ...local("pattu-women", 0.5), slot: "outfits-women" as const } },
-  { key: "accessories", label: "Accessories", line: "Topi, dora, silver", shot: { ...local("kullu-topi-stack", 0.5), slot: "outfits-accessories" as const } },
+  { key: "men", label: "Men", line: "Chola, koti, dulha sets", shot: { ...local("kullu-topi-stack", 0.5), slot: "outfits-men" as const } },
+  { key: "women", label: "Women", line: "Pattu, luanchari, dohru", shot: { ...local("pattu-drying", 0.5, 0.3), slot: "outfits-women" as const } },
+  { key: "accessories", label: "Accessories", line: "Topi, dora, silver", shot: { ...local("kinnauri-silver", 0.5), slot: "outfits-accessories" as const } },
 ];
 
 function DepartmentTabs({ current, onPick }: { current: string | null; onPick: (v: string | null) => void }) {

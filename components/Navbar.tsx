@@ -20,7 +20,7 @@ export const NAV: NavItem[] = [
       { href: "/collections/pahari-byah", label: "Pahari Byah" },
       { href: "/collections/kullu-valley", label: "Kullu Valley" },
       { href: "/collections/gaddi-chamba", label: "Gaddi & Chamba" },
-      { href: "/collections/kinnaur-lahaul", label: "Kinnaur & Lahaul" },
+      { href: "/collections/kinnaur", label: "Kinnaur" },
       { href: "/collections/nati-troupe", label: "Nati Troupe" },
       { href: "/collections/silver-heirlooms", label: "Silver Heirlooms" },
     ],

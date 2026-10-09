@@ -9,8 +9,8 @@ import { Reveal } from "../ui/Reveal";
 const ITEMS = [
   ["Kullu pattu, koti & topi", "/collections/kullu-valley"],
   ["Gaddi chola & luanchari", "/collections/gaddi-chamba"],
-  ["Kinnauri dohru & thepang", "/collections/kinnaur-lahaul"],
-  ["Lahauli velvet robe", "/outfits/lahauli-robe"],
+  ["Kinnauri dohru & thepang", "/collections/kinnaur"],
+  ["Teal pattu on the loom", "/outfits/teal-pattu"],
   ["Silver heirlooms", "/collections/silver-heirlooms"],
   ["Pahari byah looks", "/collections/pahari-byah"],
 ];
