@@ -1,0 +1,32 @@
+/** Openly licensed photographs from Wikimedia Commons, stored in /public/images/commons. */
+export type Credit = { file: string; title: string; artist: string; license: string; source: string };
+
+export const credits: Credit[] = [
+  { file: "chamba-rumal", title: "19th Century Chamba Rumal.jpg", artist: "Brahmavadini", license: "CC BY-SA 4.0", source: "https://commons.wikimedia.org/wiki/File%3A19th_Century_Chamba_Rumal.jpg" },
+  { file: "chandrahaar", title: "Chandra Haar- A necklace from Kinnaur.jpg", artist: "Sapna Sony", license: "CC BY-SA 4.0", source: "https://commons.wikimedia.org/wiki/File%3AChandra_Haar-_A_necklace_from_Kinnaur.jpg" },
+  { file: "gaddi-couple", title: "Gaddi artisans at Suraj Kund fest.jpg", artist: "Rodrick rajive lal", license: "CC BY-SA 4.0", source: "https://commons.wikimedia.org/wiki/File%3AGaddi_artisans_at_Suraj_Kund_fest.jpg" },
+  { file: "gaddi-man", title: "Gaddi tribe man.jpg", artist: "Harvinder Chandigarh", license: "CC BY-SA 4.0", source: "https://commons.wikimedia.org/wiki/File%3AGaddi_tribe_man.jpg" },
+  { file: "himachali-attire", title: "Traditional Himachali attire.jpg", artist: "Wiki101prep4", license: "CC BY-SA 4.0", source: "https://commons.wikimedia.org/wiki/File%3ATraditional_Himachali_attire.jpg" },
+  { file: "kinnauri-attire", title: "Traditional Attire of a Himachali Woman in Kinnaur, Himachal Pradesh, India.jpg", artist: "Nomadicmonksaraji", license: "CC BY-SA 4.0", source: "https://commons.wikimedia.org/wiki/File%3ATraditional_Attire_of_a_Himachali_Woman_in_Kinnaur%2C_Himachal_Pradesh%2C_India.jpg" },
+  { file: "kinnauri-earrings", title: "Traditional Earings of Kinnaur.jpg", artist: "Sapna Sony", license: "CC BY 4.0", source: "https://commons.wikimedia.org/wiki/File%3ATraditional_Earings_of_Kinnaur.jpg" },
+  { file: "kinnauri-elder", title: "Kinnauri lady.jpg", artist: "Lokesh negi", license: "CC BY-SA 4.0", source: "https://commons.wikimedia.org/wiki/File%3AKinnauri_lady.jpg" },
+  { file: "kinnauri-gold", title: "Traditional Jewellery of Kinnaur District in Himachal Pradesh.jpg", artist: "Sapna Sony", license: "CC BY-SA 4.0", source: "https://commons.wikimedia.org/wiki/File%3ATraditional_Jewellery_of_Kinnaur_District_in_Himachal_Pradesh.jpg" },
+  { file: "kinnauri-silver", title: "Traditional Silver Design Work from Kinnaur, Himachal Pradesh.jpg", artist: "Sapna Sony", license: "CC BY-SA 4.0", source: "https://commons.wikimedia.org/wiki/File%3ATraditional_Silver_Design_Work_from_Kinnaur%2C_Himachal_Pradesh.jpg" },
+  { file: "kullu-dussehra", title: "Kullu Dussehra - main procession.jpg", artist: "Kondephy", license: "CC BY-SA 3.0", source: "https://commons.wikimedia.org/wiki/File%3AKullu_Dussehra_-_main_procession.jpg" },
+  { file: "kullu-topi-stack", title: "Himachali Caps (87069779).jpeg", artist: "Ravi Kumar", license: "CC BY 3.0", source: "https://commons.wikimedia.org/wiki/File%3AHimachali_Caps_%2887069779%29.jpeg" },
+  { file: "kullu-woman", title: "Kullu Himachal Pradesh India Woman.jpg", artist: "ellen reitman", license: "CC BY-SA 2.0", source: "https://commons.wikimedia.org/wiki/File%3AKullu_Himachal_Pradesh_India_Woman.jpg" },
+  { file: "loom-1", title: "Kullvi Pattu Weaving in Kullu district,10.jpg", artist: "Rajani Gairshail", license: "CC BY-SA 4.0", source: "https://commons.wikimedia.org/wiki/File%3AKullvi_Pattu_Weaving_in_Kullu_district%2C10.jpg" },
+  { file: "loom-2", title: "Kullvi Pattu Weaving in Kullu district,12.jpg", artist: "Rajani Gairshail", license: "CC BY-SA 4.0", source: "https://commons.wikimedia.org/wiki/File%3AKullvi_Pattu_Weaving_in_Kullu_district%2C12.jpg" },
+  { file: "pattu-weave-1", title: "Kullvi Pattu Weaving in Kullu district,2.jpg", artist: "Rajani Gairshail", license: "CC BY-SA 4.0", source: "https://commons.wikimedia.org/wiki/File%3AKullvi_Pattu_Weaving_in_Kullu_district%2C2.jpg" },
+  { file: "pattu-weave-2", title: "Kullvi Pattu Weaving in Kullu district,1.jpg", artist: "Rajani Gairshail", license: "CC BY-SA 4.0", source: "https://commons.wikimedia.org/wiki/File%3AKullvi_Pattu_Weaving_in_Kullu_district%2C1.jpg" },
+  { file: "pattu-women", title: "Women of Mahila Mandal Wearing Traditional Pattu, Kullu, Himachal Pradesh.jpg", artist: "Rajani Gairshail", license: "CC BY-SA 4.0", source: "https://commons.wikimedia.org/wiki/File%3AWomen_of_Mahila_Mandal_Wearing_Traditional_Pattu%2C_Kullu%2C_Himachal_Pradesh.jpg" },
+  { file: "nati-men", title: "Himachali Nati.jpg", artist: "Sirazee", license: "CC BY-SA 4.0", source: "https://commons.wikimedia.org/wiki/File%3AHimachali_Nati.jpg" },
+  { file: "gaddi-woman", title: "Gaddi woman in traditional dress with children and dog.jpg", artist: "John Hill", license: "CC BY-SA 4.0", source: "https://commons.wikimedia.org/wiki/File%3AGaddi_woman_in_traditional_dress_with_children_and_dog.jpg" },
+  { file: "gaddi-chola-dance", title: "Gaddi man dancing.jpg", artist: "Kalitgautam", license: "CC BY-SA 4.0", source: "https://commons.wikimedia.org/wiki/File%3AGaddi_man_dancing.jpg" },
+  { file: "gaddi-women-dance", title: "Dance by Gaddi Womens.jpg", artist: "Pratyaksh Luharch", license: "CC BY-SA 4.0", source: "https://commons.wikimedia.org/wiki/File%3ADance_by_Gaddi_Womens.jpg" },
+  { file: "lahauli-girls", title: "Young Girls in Traditional Dress of Lahaul and Spiti District, Himachal Pradesh.jpg", artist: "Rajani Gairshail", license: "CC BY-SA 4.0", source: "https://commons.wikimedia.org/wiki/File%3AYoung_Girls_in_Traditional_Dress_of_Lahaul_and_Spiti_District%2C_Himachal_Pradesh.jpg" },
+  { file: "himachali-jacket", title: "Traditional dress of Himanchal Pradesh.jpg", artist: "Sukh1810", license: "CC BY-SA 4.0", source: "https://commons.wikimedia.org/wiki/File%3ATraditional_dress_of_Himanchal_Pradesh.jpg" },
+  { file: "kaza-dance", title: "TRADITIONAL DANCE AT KAZA.jpg", artist: "Amarchobiabhi", license: "CC BY-SA 4.0", source: "https://commons.wikimedia.org/wiki/File%3ATRADITIONAL_DANCE_AT_KAZA.jpg" },
+  { file: "gur-shanglang", title: "Gur Shanglang, Kinnauri Tribal Waist Band.jpg", artist: "Sapna Sony", license: "CC BY-SA 4.0", source: "https://commons.wikimedia.org/wiki/File%3AGur_Shanglang%2C_Kinnauri_Tribal_Waist_Band.jpg" },
+  { file: "devta-procession", title: "Local Deity Worship( Himachal Pradesh).jpg", artist: "Rajani Gairshail", license: "CC BY-SA 4.0", source: "https://commons.wikimedia.org/wiki/File%3ALocal_Deity_Worship%28_Himachal_Pradesh%29.jpg" },
+];
